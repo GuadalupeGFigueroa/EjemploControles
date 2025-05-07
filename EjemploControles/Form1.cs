@@ -4,6 +4,7 @@ namespace EjemploControles
     public partial class Form1 : Form
     {
         string rutaImagen = "";
+        List<Cursos> listaCursos = new List<Cursos>();
         public Form1()
         {
             InitializeComponent();
@@ -84,6 +85,26 @@ namespace EjemploControles
             MessageBox.Show($"La fecha es {dtInicio.Value.ToString()}");
             string mensaje = rbDesempleados.Checked ? rbDesempleados.Text : rbOcupados.Text;
             MessageBox.Show($"El colectivo es {mensaje}");
+        }
+
+        private void btAgregar_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("Deseas agregar el registro", "Confirmación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (resultado == DialogResult.OK)
+            {
+                Cursos c = new Cursos();
+                c.Codigo = int.Parse(txCodigo.Text);
+                c.Curso = txNombre.Text;
+                c.Familia = cbFamilia.Text;
+                c.Poblacion = lbxPoblacion.Text;
+                c.Colectivo = rbDesempleados.Checked ? rbDesempleados.Text : rbOcupados.Text;
+                c.Certificado = ckCertificados.Checked;
+                c.Inicio = dtInicio.Value;
+                c.Ruta = rutaImagen;
+                listaCursos.Add(c);
+                dgvCursos.DataSource = null;
+                dgvCursos.DataSource = listaCursos;
+            }
         }
     }
 }

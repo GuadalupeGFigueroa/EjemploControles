@@ -48,8 +48,10 @@
             cbFamilia = new ComboBox();
             aviso = new ToolTip(components);
             btPrueba = new Button();
+            dgvCursos = new DataGridView();
             gbColectivo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbFoto).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCursos).BeginInit();
             SuspendLayout();
             // 
             // lbNombre
@@ -205,6 +207,7 @@
             btAgregar.TabIndex = 8;
             btAgregar.Text = "Agregar";
             btAgregar.UseVisualStyleBackColor = true;
+            btAgregar.Click += btAgregar_Click;
             // 
             // cbFamilia
             // 
@@ -224,11 +227,21 @@
             btPrueba.UseVisualStyleBackColor = true;
             btPrueba.Click += btPrueba_Click;
             // 
+            // dgvCursos
+            // 
+            dgvCursos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCursos.Location = new Point(66, 401);
+            dgvCursos.Name = "dgvCursos";
+            dgvCursos.RowHeadersWidth = 51;
+            dgvCursos.Size = new Size(1193, 188);
+            dgvCursos.TabIndex = 16;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1298, 664);
+            Controls.Add(dgvCursos);
             Controls.Add(btPrueba);
             Controls.Add(cbFamilia);
             Controls.Add(btAgregar);
@@ -251,6 +264,7 @@
             gbColectivo.ResumeLayout(false);
             gbColectivo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbFoto).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCursos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -276,5 +290,6 @@
         private ComboBox cbFamilia;
         private ToolTip aviso;
         private Button btPrueba;
+        private DataGridView dgvCursos;
     }
 }
