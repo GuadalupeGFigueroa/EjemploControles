@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lbNombre = new Label();
             txNombre = new TextBox();
             lbCodigo = new Label();
@@ -45,6 +46,8 @@
             btCargar = new Button();
             btAgregar = new Button();
             cbFamilia = new ComboBox();
+            aviso = new ToolTip(components);
+            btPrueba = new Button();
             gbColectivo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbFoto).BeginInit();
             SuspendLayout();
@@ -56,46 +59,47 @@
             lbNombre.AccessibleRole = AccessibleRole.Grip;
             lbNombre.AutoSize = true;
             lbNombre.BackColor = SystemColors.ButtonShadow;
-            lbNombre.Location = new Point(24, 48);
+            lbNombre.Location = new Point(252, 43);
             lbNombre.Name = "lbNombre";
             lbNombre.Size = new Size(67, 20);
-            lbNombre.TabIndex = 0;
+            lbNombre.TabIndex = 3;
             lbNombre.Text = "Nombre:\r\n";
-            lbNombre.Click += txNombre_Click;
             // 
             // txNombre
             // 
-            txNombre.Location = new Point(97, 45);
+            txNombre.Location = new Point(339, 43);
             txNombre.Name = "txNombre";
             txNombre.Size = new Size(125, 27);
-            txNombre.TabIndex = 1;
+            txNombre.TabIndex = 4;
+            txNombre.Leave += txNombre_Leave;
             // 
             // lbCodigo
             // 
             lbCodigo.AutoSize = true;
             lbCodigo.BackColor = SystemColors.ControlDark;
-            lbCodigo.Location = new Point(265, 47);
+            lbCodigo.Location = new Point(14, 43);
             lbCodigo.Name = "lbCodigo";
             lbCodigo.Size = new Size(61, 20);
-            lbCodigo.TabIndex = 2;
+            lbCodigo.TabIndex = 1;
             lbCodigo.Text = "Código:";
             // 
             // lbFamilia
             // 
             lbFamilia.AutoSize = true;
             lbFamilia.BackColor = SystemColors.ControlDark;
-            lbFamilia.Location = new Point(483, 44);
+            lbFamilia.Location = new Point(505, 43);
             lbFamilia.Name = "lbFamilia";
             lbFamilia.Size = new Size(137, 20);
-            lbFamilia.TabIndex = 3;
+            lbFamilia.TabIndex = 5;
             lbFamilia.Text = "Familia Profesional:";
             // 
             // txCodigo
             // 
-            txCodigo.Location = new Point(332, 44);
+            txCodigo.Location = new Point(97, 43);
             txCodigo.Name = "txCodigo";
             txCodigo.Size = new Size(125, 27);
-            txCodigo.TabIndex = 4;
+            txCodigo.TabIndex = 2;
+            txCodigo.Leave += txCodigo_Leave;
             // 
             // lbPoblacion
             // 
@@ -104,7 +108,7 @@
             lbPoblacion.Location = new Point(14, 203);
             lbPoblacion.Name = "lbPoblacion";
             lbPoblacion.Size = new Size(77, 20);
-            lbPoblacion.TabIndex = 6;
+            lbPoblacion.TabIndex = 9;
             lbPoblacion.Text = "Población:";
             // 
             // lbxPoblacion
@@ -113,7 +117,7 @@
             lbxPoblacion.Location = new Point(97, 203);
             lbxPoblacion.Name = "lbxPoblacion";
             lbxPoblacion.Size = new Size(150, 104);
-            lbxPoblacion.TabIndex = 7;
+            lbxPoblacion.TabIndex = 10;
             // 
             // rbDesempleados
             // 
@@ -121,10 +125,9 @@
             rbDesempleados.Location = new Point(4, 40);
             rbDesempleados.Name = "rbDesempleados";
             rbDesempleados.Size = new Size(123, 24);
-            rbDesempleados.TabIndex = 8;
+            rbDesempleados.TabIndex = 0;
             rbDesempleados.Text = "Desempleado";
             rbDesempleados.UseVisualStyleBackColor = true;
-            rbDesempleados.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // rbOcupados
             // 
@@ -132,7 +135,7 @@
             rbOcupados.Location = new Point(127, 40);
             rbOcupados.Name = "rbOcupados";
             rbOcupados.Size = new Size(91, 24);
-            rbOcupados.TabIndex = 9;
+            rbOcupados.TabIndex = 1;
             rbOcupados.TabStop = true;
             rbOcupados.Text = "Ocupado";
             rbOcupados.UseVisualStyleBackColor = true;
@@ -141,10 +144,10 @@
             // 
             gbColectivo.Controls.Add(rbDesempleados);
             gbColectivo.Controls.Add(rbOcupados);
-            gbColectivo.Location = new Point(295, 203);
+            gbColectivo.Location = new Point(281, 203);
             gbColectivo.Name = "gbColectivo";
             gbColectivo.Size = new Size(250, 104);
-            gbColectivo.TabIndex = 10;
+            gbColectivo.TabIndex = 11;
             gbColectivo.TabStop = false;
             gbColectivo.Text = "Colectivo:";
             // 
@@ -154,32 +157,33 @@
             ckCertificados.Location = new Point(577, 203);
             ckCertificados.Name = "ckCertificados";
             ckCertificados.Size = new Size(104, 24);
-            ckCertificados.TabIndex = 11;
+            ckCertificados.TabIndex = 12;
             ckCertificados.Text = "Certificado";
             ckCertificados.UseVisualStyleBackColor = true;
-            ckCertificados.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // lbFecha
             // 
             lbFecha.AutoSize = true;
-            lbFecha.Location = new Point(719, 203);
+            lbFecha.Location = new Point(577, 287);
             lbFecha.Name = "lbFecha";
             lbFecha.Size = new Size(111, 20);
-            lbFecha.TabIndex = 12;
+            lbFecha.TabIndex = 13;
             lbFecha.Text = "Fecha de inicio:";
             // 
             // dtInicio
             // 
-            dtInicio.Location = new Point(837, 203);
+            dtInicio.Location = new Point(765, 287);
             dtInicio.Name = "dtInicio";
             dtInicio.Size = new Size(250, 27);
-            dtInicio.TabIndex = 13;
+            dtInicio.TabIndex = 0;
             // 
             // pbFoto
             // 
-            pbFoto.Location = new Point(900, 45);
+            pbFoto.BorderStyle = BorderStyle.FixedSingle;
+            pbFoto.Location = new Point(900, 43);
             pbFoto.Name = "pbFoto";
-            pbFoto.Size = new Size(187, 113);
+            pbFoto.Size = new Size(200, 224);
+            pbFoto.SizeMode = PictureBoxSizeMode.StretchImage;
             pbFoto.TabIndex = 14;
             pbFoto.TabStop = false;
             // 
@@ -188,33 +192,44 @@
             btCargar.Location = new Point(1121, 48);
             btCargar.Name = "btCargar";
             btCargar.Size = new Size(138, 29);
-            btCargar.TabIndex = 15;
+            btCargar.TabIndex = 7;
             btCargar.Text = "Cargar imagen";
             btCargar.UseVisualStyleBackColor = true;
+            btCargar.Click += btCargar_Click;
             // 
             // btAgregar
             // 
             btAgregar.Location = new Point(1121, 129);
             btAgregar.Name = "btAgregar";
             btAgregar.Size = new Size(138, 29);
-            btAgregar.TabIndex = 16;
+            btAgregar.TabIndex = 8;
             btAgregar.Text = "Agregar";
             btAgregar.UseVisualStyleBackColor = true;
             // 
             // cbFamilia
             // 
             cbFamilia.FormattingEnabled = true;
-            cbFamilia.Location = new Point(648, 47);
+            cbFamilia.Location = new Point(660, 43);
             cbFamilia.Name = "cbFamilia";
-            cbFamilia.Size = new Size(151, 28);
-            cbFamilia.TabIndex = 17;
-            cbFamilia.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cbFamilia.Size = new Size(201, 28);
+            cbFamilia.TabIndex = 6;
+            // 
+            // btPrueba
+            // 
+            btPrueba.Location = new Point(577, 358);
+            btPrueba.Name = "btPrueba";
+            btPrueba.Size = new Size(94, 29);
+            btPrueba.TabIndex = 15;
+            btPrueba.Text = "Probar";
+            btPrueba.UseVisualStyleBackColor = true;
+            btPrueba.Click += btPrueba_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1298, 664);
+            Controls.Add(btPrueba);
             Controls.Add(cbFamilia);
             Controls.Add(btAgregar);
             Controls.Add(btCargar);
@@ -259,5 +274,7 @@
         private Button btCargar;
         private Button btAgregar;
         private ComboBox cbFamilia;
+        private ToolTip aviso;
+        private Button btPrueba;
     }
 }
