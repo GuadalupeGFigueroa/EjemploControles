@@ -219,7 +219,7 @@
             // 
             // btPrueba
             // 
-            btPrueba.Location = new Point(577, 358);
+            btPrueba.Location = new Point(14, 345);
             btPrueba.Name = "btPrueba";
             btPrueba.Size = new Size(94, 29);
             btPrueba.TabIndex = 15;
@@ -233,8 +233,10 @@
             dgvCursos.Location = new Point(66, 401);
             dgvCursos.Name = "dgvCursos";
             dgvCursos.RowHeadersWidth = 51;
+            dgvCursos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCursos.Size = new Size(1193, 188);
             dgvCursos.TabIndex = 16;
+            dgvCursos.SelectionChanged += dgvCursos_SelectionChanged;
             // 
             // Form1
             // 
@@ -260,6 +262,7 @@
             Controls.Add(lbNombre);
             Name = "Form1";
             Text = "Formulario";
+            FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             gbColectivo.ResumeLayout(false);
             gbColectivo.PerformLayout();

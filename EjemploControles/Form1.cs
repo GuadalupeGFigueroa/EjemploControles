@@ -1,3 +1,5 @@
+using System.Drawing.Drawing2D;
+
 namespace EjemploControles
 {
 
@@ -106,5 +108,83 @@ namespace EjemploControles
                 dgvCursos.DataSource = listaCursos;
             }
         }
+
+        private void dgvCursos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvCursos.CurrentRow?.DataBoundItem is Cursos c)
+            //Si la fila seleccionada no es nula, y además está enlazada con un registro que es Cursos, crea un objeto de la clase cursos llamado c.
+            {
+                txCodigo.Text = c.Codigo.ToString();
+                txNombre.Text = c.Curso.ToString();
+                cbFamilia.SelectedItem = c.Familia.ToString();
+                lbxPoblacion.SelectedItem = c.Poblacion.ToString();
+                if (c.Colectivo == "desempleados")
+                {
+                    rbDesempleados.Checked = true;
+                }
+                else
+                {
+                    rbOcupados.Checked = true;
+                }
+                ckCertificados.Checked = c.Certificado;
+                dtInicio.Value = c.Inicio;
+                if (string.IsNullOrEmpty(c.Ruta))
+                {
+                    pbFoto.Image = null;
+                }
+                else
+                {
+                    pbFoto.Image = Image.FromFile(c.Ruta);
+                }
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StreamWriter sw = new StreamWriter("cursos.txt");
+            foreach (Cursos c in listaCursos)
+            {
+                string linea = string.Join("|",
+                    c.Codigo,
+                    c.Curso,
+                    c.Familia,
+                    c.Poblacion,
+                    c.Certificado,
+                    c.Colectivo,
+                    c.Inicio.ToString("yyyy-MM-dd"),
+                    c.Ruta);
+                sw.WriteLine(linea);
+            }
+            sw.Close();
+        }
+        private void cargarRegistros()
+        {
+            listaCursos = new List<Cursos>();
+            if (File.Exists("cursos.text"))
+            {
+                string[] lineas = File.ReadAllLines("cursos.txt");
+                foreach (string linea in lineas)
+                {
+                    string[] partes = linea.Split('|');
+                    if (partes.Length == 8)
+                    {
+                        Cursos c = new Cursos();
+                        c.Codigo = int.Parse(partes[0]);
+                        c.Curso = partes[1];
+                        c.Familia = partes[2];
+                        c.Poblacion = partes[3];
+                        c.Certificado = bool.Parse(partes[4]);
+                        c.Colectivo = partes[5];
+                        c.Inicio = DateTime.Parse(partes[6]);
+                        c.Ruta = partes[7];
+                        listaCursos.Add(c);
+                    }
+                }
+
+            }
+            dgvCursos.DataSource = null;
+            dgvCursos.DataSource = listaCursos;
+        }
+        
     }
 }
